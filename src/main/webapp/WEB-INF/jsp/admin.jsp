@@ -21,7 +21,7 @@
         <c:forEach items="${allUsers}" var="user">
             <tr>
                 <td>${user.id}</td>
-                <td>${user.username}</td>
+                <td>${user.userName}</td>
                 <td>${user.password}</td>
                 <td>
                     <c:forEach items="${user.roles}" var="role">${role.name}; </c:forEach>

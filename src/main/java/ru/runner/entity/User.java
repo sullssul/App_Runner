@@ -22,7 +22,7 @@ public class User implements UserDetails {
     @Size(min=3, message = "Не меньше 3 знаков")
     @Getter
     @Setter
-    private String login;
+    private String username;
 
     @Size(min=5, message = "Не меньше 5 знаков")
     @Getter
@@ -79,7 +79,7 @@ public class User implements UserDetails {
 
     @Override
     public String getUsername() {
-        return login;
+        return username;
     }
 
     @Override
