@@ -11,6 +11,7 @@ import ru.runner.entity.User;
 import ru.runner.service.UserService;
 
 import javax.validation.Valid;
+import java.util.Date;
 
 @Controller
 public class RegistrationController {
@@ -29,6 +30,8 @@ public class RegistrationController {
     public String addUser(@ModelAttribute("userForm") @Valid User userForm,
                           BindingResult bindingResult,
                           Model model) {
+
+        userForm.setRegisteringDate(new Date());
 
         if (bindingResult.hasErrors()) {
             return "registration";
