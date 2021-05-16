@@ -32,6 +32,7 @@ public class RegistrationController {
                           Model model) {
 
         userForm.setRegisteringDate(new Date());
+        userForm.setShortMemo("");
 
         if (bindingResult.hasErrors()) {
             return "registration";

@@ -47,6 +47,13 @@ public class UserService implements UserDetailsService {
         return user;
     }
 
+    public void updateUser(User user) {
+        boolean isExistUser = userRepository.existsById(user.getId());
+
+        if(isExistUser){
+           userRepository.save(user);
+        }
+    }
 
     public User findUserById(Long userId) {
         Optional<User> userFromDb = userRepository.findById(userId);

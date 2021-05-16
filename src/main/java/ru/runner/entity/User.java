@@ -63,6 +63,12 @@ public class User implements UserDetails {
 
     @Getter
     @Setter
+    @Column(name = "short_memo")
+    @Type(type = "text")
+    private String shortMemo;
+
+    @Getter
+    @Setter
     @Column(name = "photo")
     @Type(type = "text")
     private String photo;
