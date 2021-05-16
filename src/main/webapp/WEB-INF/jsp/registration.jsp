@@ -33,6 +33,10 @@
         button {
             margin: 5px 5px 5px 5px;
         }
+
+        memo{
+            height: auto;
+        }
     </style>
 
 </head>
@@ -41,9 +45,9 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
         crossorigin="anonymous"></script>
+<%@ include file = "header.jsp" %>
 
 <div class="container">
-
     <main>
 
         <div class="py-5 ">
@@ -71,6 +75,13 @@
                                         path="lastName"
                                         class="form-control"
                                         id="lastName"/>
+                        </div>
+                        <div class="col-12">
+                            <label for="memo" class="form-label memo">О себе</label>
+                            <form:textarea type="text"
+                                        path="memo"
+                                        class="form-control"
+                                        id="memo"/>
                         </div>
 
                         <div class="col-12">

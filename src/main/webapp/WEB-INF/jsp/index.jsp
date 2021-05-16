@@ -43,45 +43,9 @@
     <link href="headers.css" rel="stylesheet">
 </head>
 <body>
+<%@ include file = "header.jsp" %>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
 <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
-
-<div class="b-example-divider"></div>
-<header class="p-3 bg-dark text-white">
-<div class="container">
-
-
-        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-            <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
-                <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
-            </a>
-
-            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                <li><a href="/" class="nav-link px-2 text-secondary">Главная</a></li>
-                <li><a href="#" class="nav-link px-2 text-white">Все проекты</a></li>
-                <li><a href="#" class="nav-link px-2 text-white">О нас</a></li>
-            </ul>
-
-            <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-                <input type="search" class="form-control form-control-dark" placeholder="Поиск...">
-            </form>
-
-
-            <div class="text-end">
-
-                <sec:authorize access="!isAuthenticated()">
-                    <button onclick="document.location='login'" type="button" class="btn btn-outline-light me-2">Войти</button>
-                    <button onclick="document.location='registration'" type="button" class="btn btn-warning">Зарегистрироваться</button>
-                </sec:authorize>
-
-                <sec:authorize access="isAuthenticated()">
-                    <button onclick="document.location='login'" type="button" class="btn btn-outline-light me-2">${pageContext.request.userPrincipal.name}</button>
-                    <button onclick="document.location='/logout'" type="button" class="btn btn-warning">Выйти</button>
-                </sec:authorize>
-
-            </div>
-
-        </div>
 
     <h4><a href="/news">Новости (только пользователь)</a></h4>
     <h4><a href="/admin">Пользователи (только админ)</a></h4>

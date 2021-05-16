@@ -2,6 +2,7 @@ package ru.runner.entity;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.Type;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -57,11 +58,13 @@ public class User implements UserDetails {
     @Getter
     @Setter
     @Column(name = "memo")
+    @Type(type = "text")
     private String memo;
 
     @Getter
     @Setter
     @Column(name = "photo")
+    @Type(type = "text")
     private String photo;
 
     @Getter

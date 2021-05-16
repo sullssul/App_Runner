@@ -48,7 +48,7 @@
 
 <div class="b-example-divider"></div>
 <header class="p-3 bg-dark text-white">
-<div class="container">
+    <div class="container">
 
 
         <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
@@ -75,17 +75,14 @@
                 </sec:authorize>
 
                 <sec:authorize access="isAuthenticated()">
-                    <button onclick="document.location='login'" type="button" class="btn btn-outline-light me-2">${pageContext.request.userPrincipal.name}</button>
+                    <button onclick="document.location='/profile'" type="button" class="btn btn-outline-light me-2">${pageContext.request.userPrincipal.name}</button>
                     <button onclick="document.location='/logout'" type="button" class="btn btn-warning">Выйти</button>
                 </sec:authorize>
 
             </div>
 
         </div>
-
-    <h4><a href="/news">Новости (только пользователь)</a></h4>
-    <h4><a href="/admin">Пользователи (только админ)</a></h4>
-</div>
+    </div>
 </header>
 </body>
 </html>
