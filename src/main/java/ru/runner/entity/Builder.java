@@ -1,41 +1,38 @@
 package ru.runner.entity;
 
+import lombok.Getter;
+import lombok.Setter;
+import org.hibernate.annotations.Type;
+
+import javax.persistence.*;
+import java.util.Set;
+
+@Entity
 public class Builder {
 
+    @Getter
+    @Setter
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    @Getter
+    @Setter
     private String name;
+
+    @Getter
+    @Setter
+    @Type(type = "text")
     private String version;
+
+    @Getter
+    @Setter
+    @Type(type = "text")
     private String logo;
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getVersion() {
-        return version;
-    }
-
-    public void setVersion(String version) {
-        this.version = version;
-    }
-
-    public String getLogo() {
-        return logo;
-    }
-
-    public void setLogo(String logo) {
-        this.logo = logo;
-    }
+    @Getter
+    @Setter
+    @Transient
+    @ManyToMany(mappedBy = "languages")
+    private Set<Project> builders;
 }

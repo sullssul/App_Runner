@@ -52,4 +52,8 @@ public class Project {
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Language> languages;
 
+    @Getter
+    @Setter
+    @ManyToMany(fetch = FetchType.EAGER)
+    private Set<Builder> builders;
 }
