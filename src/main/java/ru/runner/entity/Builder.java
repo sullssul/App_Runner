@@ -1,4 +1,4 @@
-package ru.runner.entity.build;
+package ru.runner.entity;
 
 public class Builder {
 

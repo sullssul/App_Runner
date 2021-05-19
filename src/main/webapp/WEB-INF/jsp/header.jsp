@@ -58,7 +58,7 @@
 
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                 <li><a href="/" class="nav-link px-2 text-secondary">Главная</a></li>
-                <li><a href="#" class="nav-link px-2 text-white">Все проекты</a></li>
+                <li><a href="/allProjects" class="nav-link px-2 text-white">Все проекты</a></li>
                 <li><a href="#" class="nav-link px-2 text-white">О нас</a></li>
             </ul>
 
@@ -75,7 +75,8 @@
                 </sec:authorize>
 
                 <sec:authorize access="isAuthenticated()">
-                    <button onclick="document.location='/profile'" type="button" class="btn btn-outline-light me-2">${pageContext.request.userPrincipal.name}</button>
+                    <button onclick="document.location='/project/create'" type="button" class="btn btn-success me-2">Создать проект</button>
+                    <button onclick="document.location='/profile/current'" type="button" class="btn btn-outline-light me-2">${pageContext.request.userPrincipal.name}</button>
                     <button onclick="document.location='/logout'" type="button" class="btn btn-warning">Выйти</button>
                 </sec:authorize>
 
@@ -84,5 +85,6 @@
         </div>
     </div>
 </header>
+<div class="b-example-divider"></div>
 </body>
 </html>

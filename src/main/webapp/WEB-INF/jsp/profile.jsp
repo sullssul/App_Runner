@@ -44,8 +44,10 @@
         <div class="row">
             <div class="col-md-4">
                 <div class="profile-img">
-                    <img src=" <sec:authentication property="principal.photo"/>"
-                         alt=""/>
+                    <img src="https://www.pngitem.com/pimgs/m/504-5040528_empty-profile-picture-png-transparent-png.png"
+                         width="640"
+                         height="640"
+                         alt="img"/>
                     <div class="file btn btn-lg btn-primary">
                         Сменить фото
                         <input type="file" name="file"/>
@@ -55,12 +57,12 @@
             <div class="col-md-6">
                 <div class="profile-head">
                     <h5>
-                        <sec:authentication property="principal.firstName"/>
-                        <sec:authentication property="principal.lastName"/>
+                        ${user.firstName}
+                        ${user.lastName}
                     </h5>
 
                     <h6>
-                        <sec:authentication property="principal.shortMemo"/>
+                        ${user.shortMemo}
                     </h6>
 
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -76,11 +78,14 @@
                 </div>
             </div>
             <div class="col-md-2">
-                <button type="button"
-                        class="profile-edit-btn"
-                        onclick="document.location='/profile/editprofile/<sec:authentication property="principal.id"/>'"
-                >Изменить профиль
-                </button>
+                <c:if test="${isCurrentUser}" >
+                    <button type="button"
+                            class="profile-edit-btn"
+                            onclick="document.location='/profile/editprofile/<sec:authentication
+                                    property="principal.id"/>'"
+                    >Изменить профиль
+                    </button>
+                </c:if>
             </div>
         </div>
         <div class="row">
@@ -94,22 +99,24 @@
                     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                         <div class="row">
                             <div class="col-md-6">
-                                <label>Логин</label>
+                                <label>Никнейм</label>
                             </div>
                             <div class="col-md-6">
-                                <p><sec:authentication property="principal.username"/>
+                                <p>
+                                    ${user.username}
                                 </p>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-6">
-                                <label> Логин
-
+                                <label>
+                                    ФИО
                                 </label>
                             </div>
                             <div class="col-md-6">
-                                <p><sec:authentication property="principal.firstName"/>
-                                    <sec:authentication property="principal.lastName"/>
+                                <p>
+                                    ${user.firstName}
+                                    ${user.lastName}
                                 </p>
                             </div>
                         </div>
@@ -118,7 +125,9 @@
                                 <label>Email</label>
                             </div>
                             <div class="col-md-6">
-                                <p><sec:authentication property="principal.email"/></p>
+                                <p>
+                                    ${user.email}
+                                </p>
                             </div>
                         </div>
                         <div class="row">
@@ -126,7 +135,9 @@
                                 <label>Дата регистрации</label>
                             </div>
                             <div class="col-md-6">
-                                <p><sec:authentication property="principal.registeringDate"/></p>
+                                <p>
+                                    ${user.registeringDate}
+                                </p>
                             </div>
                         </div>
                         <div class="row">
@@ -134,7 +145,9 @@
                                 <label>О себе</label>
                             </div>
                             <div class="col-md-6">
-                                <p><sec:authentication property="principal.memo"/></p>
+                                <p>
+                                    ${user.memo}
+                                </p>
                             </div>
                         </div>
                     </div>

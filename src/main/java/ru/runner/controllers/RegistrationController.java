@@ -33,6 +33,7 @@ public class RegistrationController {
 
         userForm.setRegisteringDate(new Date());
         userForm.setShortMemo("");
+        userForm.setPhoto("/images/empty.png");
 
         if (bindingResult.hasErrors()) {
             return "registration";

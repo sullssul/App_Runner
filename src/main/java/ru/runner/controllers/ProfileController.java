@@ -1,10 +1,15 @@
 package ru.runner.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 import ru.runner.entity.User;
 import ru.runner.service.UserService;
@@ -18,13 +23,34 @@ public class ProfileController {
     @Autowired
     private UserService userService;
 
+//
+//    @GetMapping("/profile")
+//    public String showUserProfile(Model model) {
+//
+//        model.addAttribute("isCurrentUser", true);
+//        return "profile";
+//    }
 
-    @RequestMapping("/profile")
-    public ModelAndView showProfile() {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("profile");
-        return modelAndView;
+    @GetMapping("/profile/current")
+    public String showProfile(Model model) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = (User) auth.getPrincipal();
+
+        model.addAttribute("isCurrentUser", true);
+        model.addAttribute("user", user);
+
+        return "profile";
     }
+
+    @GetMapping("/profile/{id}")
+    public String showProfile(Model model, @PathVariable("id") long id) {
+        model.addAttribute("isCurrentUser", false);
+        User user = userService.findUserById(id);
+        model.addAttribute("user", user);
+
+        return "profile";
+    }
+
 
     @GetMapping("/profile/editprofile/{id}")
     public String showEditProfileForm(Model model, @PathVariable("id") long id) {
@@ -69,6 +95,7 @@ public class ProfileController {
 
         copyEmptyParams(user, userForm);
         userService.updateUser(userForm);
+
         modelAndView.setViewName("redirect:/profile");
 
         return modelAndView;

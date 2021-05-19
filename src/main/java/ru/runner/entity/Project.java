@@ -4,10 +4,9 @@ import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.Type;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Table(name = "t_project")
@@ -16,7 +15,14 @@ public class Project {
     @Getter
     @Setter
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Getter
+    @Setter
+    @ManyToOne(optional = false, cascade = CascadeType.DETACH)
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 
     @Getter
     @Setter
@@ -40,4 +46,10 @@ public class Project {
     @Getter
     @Setter
     private Date creatingDate;
+
+    @Getter
+    @Setter
+    @ManyToMany(fetch = FetchType.EAGER)
+    private Set<Language> languages;
+
 }
