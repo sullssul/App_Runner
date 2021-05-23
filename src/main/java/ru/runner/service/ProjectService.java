@@ -16,15 +16,26 @@ public class ProjectService {
     public ProjectService() {
     }
 
-    public void updateProject(Project project) {
+    public void addNewProject(Project project) {
         projectRepository.save(project);
+    }
+
+    public boolean updateProject(Project project) {
+        boolean isExist = projectRepository.existsById(project.getId());
+
+        if (!isExist) {
+            return false;
+        }
+
+        projectRepository.save(project);
+        return true;
     }
 
     public Project findProjectByName(String projectName) {
         return projectRepository.findProjectByName(projectName);
     }
 
-    public Project getProjectById(Long id){
+    public Project getProjectById(Long id) {
         return projectRepository.findProjectById(id);
     }
 
@@ -46,6 +57,4 @@ public class ProjectService {
 
         return false;
     }
-
-
 }

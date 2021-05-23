@@ -5,11 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.Type;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.Transient;
-import java.util.Set;
+import javax.persistence.*;
 
 @Entity
 public class Language {
@@ -17,7 +13,7 @@ public class Language {
     @Getter
     @Setter
     @Id
-    private int id;
+    private long id;
 
     @Getter
     @Setter
@@ -33,9 +29,8 @@ public class Language {
     @Type(type = "text")
     private String logo;
 
-    @Getter
-    @Setter
-    @Transient
-    @ManyToMany(mappedBy = "languages")
-    private Set<Project> projects;
+    @Override
+    public String toString() {
+        return name + " " + version;
+    }
 }

@@ -23,14 +23,6 @@ public class ProfileController {
     @Autowired
     private UserService userService;
 
-//
-//    @GetMapping("/profile")
-//    public String showUserProfile(Model model) {
-//
-//        model.addAttribute("isCurrentUser", true);
-//        return "profile";
-//    }
-
     @GetMapping("/profile/current")
     public String showProfile(Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();

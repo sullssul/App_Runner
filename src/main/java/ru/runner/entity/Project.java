@@ -6,7 +6,6 @@ import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.Set;
 
 @Entity
 @Table(name = "t_project")
@@ -23,6 +22,12 @@ public class Project {
     @ManyToOne(optional = false, cascade = CascadeType.DETACH)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
+
+    @Getter
+    @Setter
+    @ManyToOne(optional = false, cascade = CascadeType.DETACH)
+    @JoinColumn(name = "config_id", nullable = false)
+    private ProjectConfig projectConfig;
 
     @Getter
     @Setter
@@ -46,14 +51,4 @@ public class Project {
     @Getter
     @Setter
     private Date creatingDate;
-
-    @Getter
-    @Setter
-    @ManyToMany(fetch = FetchType.EAGER)
-    private Set<Language> languages;
-
-    @Getter
-    @Setter
-    @ManyToMany(fetch = FetchType.EAGER)
-    private Set<Builder> builders;
 }

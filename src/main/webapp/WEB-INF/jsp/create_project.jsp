@@ -76,28 +76,36 @@
                         <div class="col-12">
                             <label for="sourceUrl" class="form-label memo">Ссылка на исходные данные</label>
                             <form:input type="text"
-                                           path="sourceUrl"
-                                           class="form-control"
-                                           id="sourceUrl"/>
+                                        path="sourceUrl"
+                                        class="form-control"
+                                        id="sourceUrl"/>
                         </div>
 
                         <div class="col-12">
+
                             <label for="language" class="form-label memo">Язык программирования</label>
                             <form:select type="text"
-                                        path="language"
-                                        class="form-control"
-                                        id="language"
-                                         option="Java"
-                            />
+                                         path="language"
+                                         class="form-control"
+                                         id="language">
+                                <c:forEach items="${languageList}" var="language">
+                                    <option value="${language.id}">${language.name} ${language.version}</option>
+                                </c:forEach>
+                            </form:select>
                         </div>
 
-<%--                        <div class="col-12">--%>
-<%--                            <label for="builder" class="form-label memo">Сборщик</label>--%>
-<%--                            <form:input type="text"--%>
-<%--                                        path="language"--%>
-<%--                                        class="form-control"--%>
-<%--                                        id="builder"/>--%>
-<%--                        </div>--%>
+                        <div class="col-12">
+
+                            <label for="builder" class="form-label memo">Выберите сборщик</label>
+                            <form:select type="text"
+                                         path="builder"
+                                         class="form-control"
+                                         id="builder">
+<%--                                <c:forEach items="${builderMap}" var="builder">--%>
+<%--                                    <option value="${builder.id}">${builder.name} ${builder.version}</option>--%>
+<%--                                </c:forEach>--%>
+                            </form:select>
+                        </div>
 
                         <div class="col-12">
                             <label for="description" class="form-label memo">Описание проекта</label>
@@ -118,6 +126,7 @@
                         </button>
                     </div>
                 </form:form>
+
 
             </div>
         </div>

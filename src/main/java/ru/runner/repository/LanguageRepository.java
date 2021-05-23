@@ -6,4 +6,6 @@ import ru.runner.entity.Language;
 
 @Repository
 public interface LanguageRepository extends JpaRepository<Language, Long> {
+    Language findLanguageById(long id);
+    Language findLanguageByName(String name);
 }

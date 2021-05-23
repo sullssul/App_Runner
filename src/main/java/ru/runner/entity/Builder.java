@@ -5,7 +5,6 @@ import lombok.Setter;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
-import java.util.Set;
 
 @Entity
 public class Builder {
@@ -14,7 +13,7 @@ public class Builder {
     @Setter
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
 
     @Getter
     @Setter
@@ -32,7 +31,8 @@ public class Builder {
 
     @Getter
     @Setter
-    @Transient
-    @ManyToMany(mappedBy = "languages")
-    private Set<Project> builders;
+    @ManyToOne(optional = false, cascade = CascadeType.DETACH)
+    @JoinColumn(name = "language_id", nullable = false)
+    private Language language;
+
 }
