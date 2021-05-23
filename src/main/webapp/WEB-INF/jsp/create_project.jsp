@@ -41,9 +41,12 @@
             margin: 5px 5px 5px 5px;
         }
 
+
     </style>
 
 </head>
+
+
 <body>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
@@ -63,49 +66,38 @@
                 <h4 class="mb-3">Введите данные проекта</h4>
                 <%--@elvariable id="userForm" type=""--%>
                 <form:form method="POST" modelAttribute="projectForm" class="needs-validation">
-                    <div class="row g-3">
+                <div class="row g-3">
 
-                        <div class="col-12">
-                            <label for="name" class="form-label">Название проекта</label>
-                            <form:input type="text"
-                                        path="name"
-                                        class="form-control"
-                                        id="name"/>
-                        </div>
+                    <div class="col-12">
+                        <label for="name" class="form-label">Название проекта</label>
+                        <form:input type="text"
+                                    path="name"
+                                    class="form-control"
+                                    id="name"/>
+                    </div>
 
-                        <div class="col-12">
-                            <label for="sourceUrl" class="form-label memo">Ссылка на исходные данные</label>
-                            <form:input type="text"
-                                        path="sourceUrl"
-                                        class="form-control"
-                                        id="sourceUrl"/>
-                        </div>
+                    <div class="col-12">
+                        <label for="sourceUrl" class="form-label memo">Ссылка на исходные данные</label>
+                        <form:input type="text"
+                                    path="sourceUrl"
+                                    class="form-control"
+                                    id="sourceUrl"/>
+                    </div>
 
-                        <div class="col-12">
+                    <div class="col-12">
 
-                            <label for="language" class="form-label memo">Язык программирования</label>
-                            <form:select type="text"
-                                         path="language"
-                                         class="form-control"
-                                         id="language">
-                                <c:forEach items="${languageList}" var="language">
-                                    <option value="${language.id}">${language.name} ${language.version}</option>
-                                </c:forEach>
-                            </form:select>
-                        </div>
+                        <label for="projectConfig" class="form-label memo">Конфигурация запуска</label>
+                        <form:select type="text"
+                                     path="projectConfig"
+                                     class="form-control"
+                                     id="projectConfig">
+                            <c:forEach items="${configsList}" var="config">
+                                <option value="${config.id}">${config.name}</option>
+                            </c:forEach>
+                        </form:select>
+                    </div>
 
-                        <div class="col-12">
-
-                            <label for="builder" class="form-label memo">Выберите сборщик</label>
-                            <form:select type="text"
-                                         path="builder"
-                                         class="form-control"
-                                         id="builder">
-<%--                                <c:forEach items="${builderMap}" var="builder">--%>
-<%--                                    <option value="${builder.id}">${builder.name} ${builder.version}</option>--%>
-<%--                                </c:forEach>--%>
-                            </form:select>
-                        </div>
+                    <div class="col-12">
 
                         <div class="col-12">
                             <label for="description" class="form-label memo">Описание проекта</label>
@@ -114,22 +106,23 @@
                                            class="form-control"
                                            id="description"/>
                         </div>
-
-
-                        <button class="w-100 btn btn-success"
-                                type="submit">Создать проект
-                        </button>
-
-                        <button class="w-100 btn btn-warning border-black"
-                                type="button"
-                                onclick="document.location='/'">Назад
-                        </button>
                     </div>
-                </form:form>
 
 
+                    <button class="w-100 btn btn-success "
+                            type="submit">Создать проект
+                    </button>
+
+                    <button class="w-100 btn btn-warning border-black "
+                            type="button"
+                            onclick="document.location='/'">Назад
+                    </button>
+
+                    </form:form>
+
+
+                </div>
             </div>
-        </div>
     </main>
 </div>
 

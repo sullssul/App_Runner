@@ -9,7 +9,6 @@ import javax.persistence.*;
 @Entity
 public class ProjectConfig {
 
-
     @Getter
     @Setter
     @Id
@@ -34,9 +33,9 @@ public class ProjectConfig {
 
     public void generateName() {
         this.name = "Язык: " +
-                language.getName() + " " +
-                language.getVersion() + "; Сборщик: " +
-                builder.getName() + " " +
-                builder.getVersion();
+                language.getName() + " (ver. " +
+                language.getVersion() + "); Сборщик: " +
+                builder.getName() + " (ver. " +
+                builder.getVersion() + ");";
     }
 }

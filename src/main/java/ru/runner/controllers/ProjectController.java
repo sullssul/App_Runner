@@ -8,16 +8,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import ru.runner.entity.Builder;
-import ru.runner.entity.Language;
 import ru.runner.entity.Project;
-import ru.runner.service.LanguageAndBuilderService;
+import ru.runner.entity.ProjectConfig;
+import ru.runner.service.ProjectConfigService;
 import ru.runner.service.ProjectService;
 
 import javax.validation.Valid;
-import java.util.HashMap;
+import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 @Controller
 public class ProjectController {
@@ -26,7 +24,7 @@ public class ProjectController {
     private ProjectService projectService;
 
     @Autowired
-    private LanguageAndBuilderService languageAndBuilderService;
+    private ProjectConfigService configService;
 
 
     @GetMapping("/allProjects")
@@ -49,15 +47,15 @@ public class ProjectController {
     public String createProject(Model model) {
         model.addAttribute("projectForm", new Project());
 
-        List<Language> languageList = languageAndBuilderService.getAllLanguages();
-        Map<Long, List<Builder>> builderMap = new HashMap<>();
+        List<ProjectConfig> configsList = configService.getAllConfigs();
 
-        for (Language language : languageList) {
-            builderMap.put(language.getId(), languageAndBuilderService.getBuildersForLanguage(language.getId()));
+        for (ProjectConfig projectConfig : configsList) {
+            projectConfig.generateName();
+            configService.updateConfig(projectConfig);
         }
 
-        model.addAttribute("builderMap", builderMap);
-        model.addAttribute("languageList", languageList);
+        model.addAttribute("configsList", configsList);
+
 
         return "create_project";
     }
@@ -65,8 +63,16 @@ public class ProjectController {
     @PostMapping("/project/create")
     public String createProject(@ModelAttribute("projectForm") @Valid Project project,
                           BindingResult bindingResult,
-                          Model model) {
+                          Model model) throws Exception {
 
+        project.setCreatingDate(new Date());
+        project.setLogo("");
+
+        if (bindingResult.hasErrors()){
+            throw new Exception("Не удалось создать проект, обратитесь к администратору. " + bindingResult.toString());
+        }
+
+        projectService.addNewProject(project);
 
         return "redirect:/";
     }
