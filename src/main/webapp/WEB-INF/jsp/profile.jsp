@@ -11,33 +11,19 @@
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.82.0">
     <title>Личный профиль</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
-
-    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/headers/">
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-
-    <!-- Bootstrap core CSS -->
-    <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
-
     <style>
 
         <%@include file='css/profile.css' %>
     </style>
 
 
-    <!-- Custom styles for this template -->
-    <link href="headers.css" rel="stylesheet">
 </head>
 <body>
 <%@ include file="header.jsp" %>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
-        crossorigin="anonymous"></script>
-<script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+
 
 <div class="container emp-profile">
     <form method="post">
@@ -66,13 +52,15 @@
                     </h6>
 
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
+
                         <li class="nav-item">
-                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
-                               aria-controls="home" aria-selected="true">О себе</a>
+                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#profile" role="tab"
+                               aria-controls="profile" aria-selected="true">О себе</a>
                         </li>
+
                         <li class="nav-item">
-                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
-                               aria-controls="profile" aria-selected="false">Проекты</a>
+                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#projects" role="tab"
+                               aria-controls="projects" aria-selected="false">Проекты</a>
                         </li>
                     </ul>
                 </div>
@@ -96,7 +84,7 @@
             </div>
             <div class="col-md-8">
                 <div class="tab-content profile-tab" id="myTabContent">
-                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                    <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                         <div class="row">
                             <div class="col-md-6">
                                 <label>Никнейм</label>
@@ -152,7 +140,7 @@
                         </div>
                     </div>
 
-                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                    <div class="tab-pane fade" id="projects" role="tabpanel" aria-labelledby="projects-tab">
                         <div class="row">
                             <div class="col-md-6">
                                 <label>Experience</label>
@@ -205,5 +193,8 @@
         </div>
     </form>
 </div>
+
+
+
 </body>
 </html>

@@ -20,13 +20,13 @@ public class Project {
     @Getter
     @Setter
     @ManyToOne(optional = false, cascade = CascadeType.DETACH)
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "user_id")
     private User user;
 
     @Getter
     @Setter
     @ManyToOne(optional = false, cascade = CascadeType.DETACH)
-    @JoinColumn(name = "config_id", nullable = false)
+    @JoinColumn(name = "config_id")
     private ProjectConfig projectConfig;
 
     @Getter

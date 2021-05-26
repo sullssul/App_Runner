@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import ru.runner.entity.Project;
 import ru.runner.entity.Role;
 import ru.runner.entity.User;
 import ru.runner.repository.RoleRepository;
@@ -31,6 +32,9 @@ public class UserService implements UserDetailsService {
 
     @Autowired
     RoleRepository roleRepository;
+
+    @Autowired
+    ProjectService projectService;
 
     @Autowired
     BCryptPasswordEncoder bCryptPasswordEncoder;
@@ -85,11 +89,21 @@ public class UserService implements UserDetailsService {
 
     public boolean deleteUser(Long userId) {
         if (userRepository.findById(userId).isPresent()) {
+            deleteAllUsersProjects(userId);
             userRepository.deleteById(userId);
             return true;
         }
         return false;
     }
+
+    private void deleteAllUsersProjects(Long userId){
+        List<Project> projectList = projectService.getAllUserProjects(userId);
+
+        for (Project project : projectList) {
+            projectService.deleteProject(project.getId());
+        }
+    }
+
 
     public List<User> usergtList(Long idMin) {
         return em.createQuery("SELECT u FROM User u WHERE u.id > :paramId", User.class)

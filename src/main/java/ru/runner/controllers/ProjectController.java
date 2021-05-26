@@ -1,6 +1,8 @@
 package ru.runner.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import ru.runner.entity.Project;
 import ru.runner.entity.ProjectConfig;
+import ru.runner.entity.User;
 import ru.runner.service.ProjectConfigService;
 import ru.runner.service.ProjectService;
 
@@ -65,6 +68,10 @@ public class ProjectController {
                           BindingResult bindingResult,
                           Model model) throws Exception {
 
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = (User) auth.getPrincipal();
+
+        project.setUser(user);
         project.setCreatingDate(new Date());
         project.setLogo("");
 

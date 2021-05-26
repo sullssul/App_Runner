@@ -11,10 +11,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
+import ru.runner.entity.Project;
 import ru.runner.entity.User;
+import ru.runner.service.ProjectService;
 import ru.runner.service.UserService;
 
 import javax.validation.Valid;
+import java.util.List;
 
 
 @Controller
@@ -23,13 +26,19 @@ public class ProfileController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private ProjectService projectService;
+
     @GetMapping("/profile/current")
     public String showProfile(Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = (User) auth.getPrincipal();
 
+        List<Project> projectList = projectService.getAllProjects();
+
         model.addAttribute("isCurrentUser", true);
         model.addAttribute("user", user);
+        model.addAttribute("projectList", projectList);
 
         return "profile";
     }
