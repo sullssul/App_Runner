@@ -34,13 +34,13 @@ public class AdminController {
     @GetMapping("/admin/users")
     public String userList(Model model) {
         model.addAttribute("userList", userService.allUsers());
-        return "/admin/users_manage";
+        return "/admin/manage_users";
     }
 
     @GetMapping("/admin/projects")
     public String projectList(Model model) {
         model.addAttribute("projectList", projectService.getAllProjects());
-        return "/admin/projects_manage";
+        return "/admin/manage_projects";
     }
 
     @PostMapping("/admin/users/delete")
@@ -66,7 +66,7 @@ public class AdminController {
     @GetMapping("/admin/configs")
     public String showConfig(Model model) {
         model.addAttribute("configList", configService.getAllConfigs());
-        return "/admin/configs_manage";
+        return "/admin/manage_configs";
     }
 
     @GetMapping("/admin/configs/create")
@@ -119,7 +119,7 @@ public class AdminController {
     public String showBuilders(Model model) {
         model.addAttribute("builderList", languageAndBuilderService.getAllBuilders());
 
-        return "/admin/builder_manage";
+        return "/admin/manage_builder";
     }
 
     @PostMapping("/admin/builders/delete")
@@ -152,7 +152,7 @@ public class AdminController {
     public String showLanguages(Model model) {
         model.addAttribute("langList", languageAndBuilderService.getAllLanguages());
 
-        return "/admin/language_manage";
+        return "/admin/manage_language";
     }
 
     @PostMapping("/admin/languages/delete")

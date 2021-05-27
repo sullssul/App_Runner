@@ -55,56 +55,55 @@
 <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
 <%@ include file="../header.jsp" %>
 
+
 <div class="container">
-    <main>
-        <div class="py-5 ">
-            <h2>Добавление нового языка</h2>
-        </div>
+    <div class="py-5 ">
+        <h2>Добавление нового языка</h2>
+    </div>
 
-        <div class="row g-5">
-            <div class="col-md-7 col-lg-8">
-                <h4 class="mb-3">Введите данные об языке</h4>
-                <%--@elvariable id="userForm" type=""--%>
-                <form:form method="POST" modelAttribute="langForm" class="needs-validation">
-                <div class="row g-3">
+    <div class="row g-5">
+        <div class="col-md-7 col-lg-8">
+            <h4 class="mb-3">Введите данные об языке</h4>
+            <%--@elvariable id="userForm" type=""--%>
+            <form:form method="POST" modelAttribute="langForm" class="needs-validation">
+            <div class="row g-3">
 
-                    <div class="col-12">
-                        <label for="name" class="form-label">Название языка</label>
-                        <form:input type="text"
-                                    path="name"
-                                    class="form-control"
-                                    id="name"/>
-                    </div>
-
-
-                    <div class="col-12">
-
-                        <div class="col-12">
-                            <label for="version" class="form-label memo">Версия языка</label>
-                            <form:textarea type="text"
-                                           path="version"
-                                           class="form-control"
-                                           id="version"/>
-                        </div>
-                    </div>
-
-
-                    <button class="w-100 btn btn-success "
-                            type="submit">Добавить новый язык
-                    </button>
-
-                    <button class="w-100 btn btn-warning border-black "
-                            type="button"
-                            onclick="document.location='/admin/languages'">Назад
-                    </button>
-
-                    </form:form>
-
-
+                <div class="col-12">
+                    <label for="name" class="form-label">Название языка</label>
+                    <form:input type="text"
+                                path="name"
+                                class="form-control"
+                                id="name"/>
                 </div>
+
+
+                <div class="col-12">
+
+                    <div class="col-12">
+                        <label for="version" class="form-label memo">Версия языка</label>
+                        <form:input type="text"
+                                    path="version"
+                                    class="form-control"
+                                    id="version"/>
+                    </div>
+                </div>
+
+
+                <button class="w-100 btn btn-success "
+                        type="submit">Добавить новый язык
+                </button>
+
+                <button class="w-100 btn btn-warning border-black "
+                        type="button"
+                        onclick="document.location='/admin/languages'">Назад
+                </button>
+
+                </form:form>
+
+
             </div>
-    </main>
-</div>
+        </div>
+    </div>
 
 </body>
 </html>

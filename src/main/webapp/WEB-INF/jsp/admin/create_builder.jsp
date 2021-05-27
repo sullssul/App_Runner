@@ -81,7 +81,7 @@
 
                         <div class="col-12">
                             <label for="version" class="form-label memo">Версия сборщика</label>
-                            <form:textarea type="text"
+                            <form:input type="text"
                                            path="version"
                                            class="form-control"
                                            id="version"/>
@@ -95,7 +95,7 @@
                                      path="language"
                                      class="form-control"
                                      id="lang">
-                            <c:forEach items="${langList}" var="config">
+                            <c:forEach items="${langList}" var="lang">
                                 <option value="${lang.id}">${lang.name} ver.(${lang.version})</option>
                             </c:forEach>
                         </form:select>

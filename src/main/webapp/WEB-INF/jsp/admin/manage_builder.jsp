@@ -51,12 +51,15 @@
                             <th scope="col" class="border-0 text-uppercase font-medium pl-4">id</th>
                             <th scope="col" class="border-0 text-uppercase font-medium">Название сборщика</th>
                             <th scope="col" class="border-0 text-uppercase font-medium">Версия</th>
+                            <th scope="col" class="border-0 text-uppercase font-medium">Язык</th>
                             <th scope="col" class="border-0 text-uppercase font-medium">Действия</th>
+
                         </tr>
 
                         </thead>
 
                         <tr>
+                            <td></td>
                             <td></td>
                             <td></td>
                             <td></td>
@@ -75,6 +78,10 @@
 
                                 <td>
                                     <span class="text">${builder.version}</span>
+                                </td>
+
+                                <td>
+                                    <span class="text">${builder.language}</span>
                                 </td>
 
                                 <td>
