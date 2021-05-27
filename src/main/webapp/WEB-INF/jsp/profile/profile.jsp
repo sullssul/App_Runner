@@ -16,13 +16,13 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <style>
 
-        <%@include file='css/profile.css' %>
+        <%@include file='../css/profile.css' %>
     </style>
 
 
 </head>
 <body>
-<%@ include file="header.jsp" %>
+<%@ include file="../header.jsp" %>
 
 
 <div class="container emp-profile">

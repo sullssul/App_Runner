@@ -10,12 +10,12 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.82.0">
-    <title>Все сборщики</title>
+    <title>Все языки</title>
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
 
 
     <style>
-        <%@ include file = "css/users.css" %>
+        <%@ include file = "../css/users.css" %>
 
         .container {
             margin-top: 30px;
@@ -28,7 +28,7 @@
 
 </head>
 <body>
-<%@ include file="header.jsp" %>
+<%@ include file="../header.jsp" %>
 
 
 <div class="container">
@@ -36,12 +36,12 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title text-uppercase mb-0">Управление сборщиками</h5>
+                    <h5 class="card-title text-uppercase mb-0">Управление языками</h5>
                 </div>
 
                 <div class="card-body">
                     <span class="text">
-                        <a href="/admin/builders/create">Добавить новый сборщик</a>
+                        <a href="/admin/languages/create">Добавить новый язык</a>
                     </span>
                 </div>
                 <div class="table-responsive">
@@ -49,7 +49,7 @@
                         <thead>
                         <tr>
                             <th scope="col" class="border-0 text-uppercase font-medium pl-4">id</th>
-                            <th scope="col" class="border-0 text-uppercase font-medium">Название сборщика</th>
+                            <th scope="col" class="border-0 text-uppercase font-medium">Название языка</th>
                             <th scope="col" class="border-0 text-uppercase font-medium">Версия</th>
                             <th scope="col" class="border-0 text-uppercase font-medium">Действия</th>
                         </tr>
@@ -63,25 +63,24 @@
                             <td></td>
                         </tr>
 
-                        <c:forEach var="builder" items="${builderList}">
+                        <c:forEach var="lang" items="${langList}">
 
                             <tr>
 
-                                <td class="pl-4">${builder.id}</td>
+                                <td class="pl-4">${lang.id}</td>
 
                                 <td>
-                                    <span class="text">${builder.name}</span>
+                                    <span class="text">${lang.name}</span>
                                 </td>
 
                                 <td>
-                                    <span class="text">${builder.version}</span>
+                                    <span class="text">${lang.version}</span>
                                 </td>
 
                                 <td>
-                                    <form action="/admin/builders/delete" method="post">
-                                        <input type="hidden" name="builderId" value="${builder.id}"/>
-
-                                        <button type="submit" onclick="return confirm('Вы уверены?')"
+                                    <form action="/admin/languages/delete" method="post">
+                                        <input type="hidden" name="langId" value="${lang.id}"/>
+                                        <button type="submit" onclick="return confirm('Вы уверены?\nЭто так же удалит все сборщики для этого языка!')"
                                                 class="btn btn-danger">
                                             Удалить
                                         </button>

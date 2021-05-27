@@ -15,7 +15,7 @@
 
 
     <style>
-        <%@ include file = "css/users.css" %>
+        <%@ include file = "../css/users.css" %>
 
         .container {
             margin-top: 30px;
@@ -28,7 +28,7 @@
 
 </head>
 <body>
-<%@ include file="header.jsp" %>
+<%@ include file="../header.jsp" %>
 
 
 <div class="container">

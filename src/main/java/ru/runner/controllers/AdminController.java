@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import ru.runner.entity.Builder;
+import ru.runner.entity.Language;
 import ru.runner.entity.ProjectConfig;
 import ru.runner.service.LanguageAndBuilderService;
 import ru.runner.service.ProjectConfigService;
@@ -32,13 +34,13 @@ public class AdminController {
     @GetMapping("/admin/users")
     public String userList(Model model) {
         model.addAttribute("userList", userService.allUsers());
-        return "users";
+        return "/admin/users_manage";
     }
 
     @GetMapping("/admin/projects")
     public String projectList(Model model) {
         model.addAttribute("projectList", projectService.getAllProjects());
-        return "projects_manage";
+        return "/admin/projects_manage";
     }
 
     @PostMapping("/admin/users/delete")
@@ -61,11 +63,10 @@ public class AdminController {
         return "redirect:/admin/projects";
     }
 
-
     @GetMapping("/admin/configs")
     public String showConfig(Model model) {
         model.addAttribute("configList", configService.getAllConfigs());
-        return "configs_manage";
+        return "/admin/configs_manage";
     }
 
     @GetMapping("/admin/configs/create")
@@ -73,7 +74,7 @@ public class AdminController {
         model.addAttribute("configForm", new ProjectConfig());
         model.addAttribute("languageList", languageAndBuilderService.getAllLanguages());
 
-        return "create_config";
+        return "/admin/create_config";
     }
 
     @PostMapping("/admin/configs/create")
@@ -114,23 +115,16 @@ public class AdminController {
         return "redirect:/admin/configs";
     }
 
-    @GetMapping("/admin/languages")
-    public String languageList(Model model) {
-        model.addAttribute("langList", languageAndBuilderService.getAllLanguages());
-
-        return "language_manage";
-    }
-
     @GetMapping("/admin/builders")
-    public String builderList(Model model) {
+    public String showBuilders(Model model) {
         model.addAttribute("builderList", languageAndBuilderService.getAllBuilders());
 
-        return "builder_manage";
+        return "/admin/builder_manage";
     }
 
     @PostMapping("/admin/builders/delete")
     public String deleteBuilder(@RequestParam(required = true, defaultValue = "") Long builderId,
-                               Model model) {
+                                Model model) {
 
         if (builderId != null) {
             languageAndBuilderService.deleteBuilder(builderId);
@@ -139,13 +133,50 @@ public class AdminController {
         return "redirect:/admin/builders";
     }
 
+    @GetMapping("/admin/builders/create")
+    public String createBuilder(Model model) {
+        model.addAttribute("builderForm", new Builder());
+        model.addAttribute("langList", languageAndBuilderService.getAllLanguages());
+        return "/admin/create_builder";
+    }
+
+    @PostMapping("/admin/builders/create")
+    public String saveNewBuilder(@ModelAttribute("builderForm") @Valid Builder builder,
+                                 Model model) {
+        languageAndBuilderService.addNewBuilder(builder);
+
+        return "redirect:/admin/builders";
+    }
+
+    @GetMapping("/admin/languages")
+    public String showLanguages(Model model) {
+        model.addAttribute("langList", languageAndBuilderService.getAllLanguages());
+
+        return "/admin/language_manage";
+    }
+
     @PostMapping("/admin/languages/delete")
     public String deleteLanguage(@RequestParam(required = true, defaultValue = "") Long langId,
-                               Model model) {
+                                 Model model) {
 
         if (langId != null) {
             languageAndBuilderService.deleteLanguage(langId);
         }
+
+        return "redirect:/admin/languages";
+    }
+
+    @GetMapping("/admin/languages/create")
+    public String createLanguage(Model model) {
+        model.addAttribute("langForm", new Language());
+
+        return "admin/create_language";
+    }
+
+    @PostMapping("/admin/languages/create")
+    public String saveNewLanguage(@ModelAttribute("langForm") @Valid Language language,
+                                  Model model) {
+        languageAndBuilderService.addNewLanguage(language);
 
         return "redirect:/admin/languages";
     }

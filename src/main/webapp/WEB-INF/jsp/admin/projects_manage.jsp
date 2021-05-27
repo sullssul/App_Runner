@@ -15,7 +15,7 @@
 
 
     <style>
-        <%@ include file = "css/users.css" %>
+        <%@ include file = "../css/users.css" %>
 
         .container {
             margin-top: 30px;
@@ -28,7 +28,7 @@
 
 </head>
 <body>
-<%@ include file="header.jsp" %>
+<%@ include file="../header.jsp" %>
 
 
 <div class="container">
@@ -36,7 +36,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title text-uppercase mb-0">Управление пользователями</h5>
+                    <h5 class="card-title text-uppercase mb-0">Управление проектами</h5>
                 </div>
                 <div class="table-responsive">
                     <table class="table no-wrap user-table mb-0">

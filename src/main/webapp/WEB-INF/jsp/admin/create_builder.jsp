@@ -11,7 +11,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.82.0">
-    <title>Создание проекта</title>
+    <title>Добавление нового сборщика</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
@@ -28,7 +28,7 @@
     <!-- Bootstrap core CSS -->
 
     <style>
-        <%@include file='css/form-validation.css' %>
+        <%@include file='../css/form-validation.css' %>
 
         @media (min-width: 768px) {
         }
@@ -53,69 +53,62 @@
         integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
         crossorigin="anonymous"></script>
 <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
-<%@ include file="header.jsp" %>
+<%@ include file="../header.jsp" %>
 
 <div class="container">
     <main>
         <div class="py-5 ">
-            <h2>Создание проекта</h2>
+            <h2>Добавление нового сборщика</h2>
         </div>
 
         <div class="row g-5">
             <div class="col-md-7 col-lg-8">
-                <h4 class="mb-3">Введите данные проекта</h4>
+                <h4 class="mb-3">Введите данные о сборщике</h4>
                 <%--@elvariable id="userForm" type=""--%>
-                <form:form method="POST" modelAttribute="projectForm" class="needs-validation">
+                <form:form method="POST" modelAttribute="builderForm" class="needs-validation">
                 <div class="row g-3">
 
                     <div class="col-12">
-                        <label for="name" class="form-label">Название проекта</label>
+                        <label for="name" class="form-label">Название сборщика</label>
                         <form:input type="text"
                                     path="name"
                                     class="form-control"
                                     id="name"/>
                     </div>
 
-                    <div class="col-12">
-                        <label for="sourceUrl" class="form-label memo">Ссылка на исходные данные</label>
-                        <form:input type="text"
-                                    path="sourceUrl"
-                                    class="form-control"
-                                    id="sourceUrl"/>
-                    </div>
-
-                    <div class="col-12">
-
-                        <label for="projectConfig" class="form-label memo">Конфигурация запуска</label>
-                        <form:select type="text"
-                                     path="projectConfig"
-                                     class="form-control"
-                                     id="projectConfig">
-                            <c:forEach items="${configsList}" var="config">
-                                <option value="${config.id}">${config.name}</option>
-                            </c:forEach>
-                        </form:select>
-                    </div>
 
                     <div class="col-12">
 
                         <div class="col-12">
-                            <label for="description" class="form-label memo">Описание проекта</label>
+                            <label for="version" class="form-label memo">Версия сборщика</label>
                             <form:textarea type="text"
-                                           path="description"
+                                           path="version"
                                            class="form-control"
-                                           id="description"/>
+                                           id="version"/>
                         </div>
+                    </div>
+
+                    <div class="col-12">
+
+                        <label for="lang" class="form-label memo">Язык</label>
+                        <form:select type="text"
+                                     path="language"
+                                     class="form-control"
+                                     id="lang">
+                            <c:forEach items="${langList}" var="config">
+                                <option value="${lang.id}">${lang.name} ver.(${lang.version})</option>
+                            </c:forEach>
+                        </form:select>
                     </div>
 
 
                     <button class="w-100 btn btn-success "
-                            type="submit">Создать проект
+                            type="submit">Добавить новый сборщик
                     </button>
 
                     <button class="w-100 btn btn-warning border-black "
                             type="button"
-                            onclick="document.location='/'">Назад
+                            onclick="document.location='/admin/builders'">Назад
                     </button>
 
                     </form:form>
@@ -125,18 +118,6 @@
             </div>
     </main>
 </div>
-
-
-<script>
-    tinymce.init({
-        selector: 'textarea',
-        plugins: 'a11ychecker advcode casechange formatpainter linkchecker autolink lists checklist media mediaembed pageembed permanentpen powerpaste table advtable tinycomments tinymcespellchecker',
-        toolbar: 'a11ycheck addcomment showcomments casechange checklist code formatpainter pageembed permanentpen table',
-        toolbar_mode: 'floating',
-        tinycomments_mode: 'embedded',
-        tinycomments_author: 'Author name',
-    });
-</script>
 
 </body>
 </html>

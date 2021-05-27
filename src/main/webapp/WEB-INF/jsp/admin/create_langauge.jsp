@@ -11,7 +11,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.82.0">
-    <title>Создание новой конфигурации</title>
+    <title>Добавление нового языка</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
@@ -25,9 +25,10 @@
     <!-- Bootstrap core CSS -->
     <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
 
+    <!-- Bootstrap core CSS -->
 
     <style>
-        <%@include file='css/form-validation.css' %>
+        <%@include file='../css/form-validation.css' %>
 
         @media (min-width: 768px) {
         }
@@ -52,41 +53,49 @@
         integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
         crossorigin="anonymous"></script>
 <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
-<%@ include file="header.jsp" %>
+<%@ include file="../header.jsp" %>
 
 <div class="container">
     <main>
         <div class="py-5 ">
-            <h2>Создание новой конфигурации</h2>
+            <h2>Добавление нового языка</h2>
         </div>
 
         <div class="row g-5">
             <div class="col-md-7 col-lg-8">
-                <h4 class="mb-3">Выберите сборщик</h4>
-                <form:form method="POST" action="builder" modelAttribute="configForm" class="needs-validation">
+                <h4 class="mb-3">Введите данные об языке</h4>
+                <%--@elvariable id="userForm" type=""--%>
+                <form:form method="POST" modelAttribute="langForm" class="needs-validation">
                 <div class="row g-3">
 
                     <div class="col-12">
+                        <label for="name" class="form-label">Название языка</label>
+                        <form:input type="text"
+                                    path="name"
+                                    class="form-control"
+                                    id="name"/>
+                    </div>
 
-                        <label for="builder" class="form-label memo">Сборщик</label>
-                        <form:select type="text"
-                                     path="builder"
-                                     class="form-control"
-                                     id="builder">
-                            <c:forEach items="${builderList}" var="builder">
-                                <option value="${builder.id}">${builder.name}, version ${builder.version}</option>
-                            </c:forEach>
-                        </form:select>
+
+                    <div class="col-12">
+
+                        <div class="col-12">
+                            <label for="version" class="form-label memo">Версия языка</label>
+                            <form:textarea type="text"
+                                           path="version"
+                                           class="form-control"
+                                           id="version"/>
+                        </div>
                     </div>
 
 
                     <button class="w-100 btn btn-success "
-                            type="submit">Создать
+                            type="submit">Добавить новый язык
                     </button>
 
                     <button class="w-100 btn btn-warning border-black "
                             type="button"
-                            onclick="document.location='/admin/configs'">Отмена
+                            onclick="document.location='/admin/languages'">Назад
                     </button>
 
                     </form:form>
@@ -95,7 +104,6 @@
                 </div>
             </div>
     </main>
-
 </div>
 
 </body>

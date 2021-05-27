@@ -35,14 +35,14 @@ public class ProjectController {
         List<Project> projectList = projectService.getAllProjects();
         model.addAttribute("projectList", projectList);
 
-        return "all_projects";
+        return "/project/all_projects";
     }
 
     @GetMapping("/project/{id}")
     public String showProject(Model model, @PathVariable("id") long id) {
         Project project = projectService.getProjectById(id);
         model.addAttribute("project", project);
-        return "project";
+        return "/project/project";
     }
 
 
@@ -60,7 +60,7 @@ public class ProjectController {
         model.addAttribute("configsList", configsList);
 
 
-        return "create_project";
+        return "/project/create_project";
     }
 
     @PostMapping("/project/create")
@@ -90,7 +90,7 @@ public class ProjectController {
         model.addAttribute("isNewProject", false);
         model.addAttribute("project", project);
 
-        return "edit_project";
+        return "/project/edit_project";
     }
 
     @PostMapping("/project/edit/{id}")
@@ -100,7 +100,7 @@ public class ProjectController {
 //        Project project = projectService.getProjectById(id);
 //        model.addAttribute("project", project);
 
-        return "project";
+        return "/project/project";
     }
 
 

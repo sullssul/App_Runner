@@ -40,7 +40,7 @@ public class ProfileController {
         model.addAttribute("user", user);
         model.addAttribute("projectList", projectList);
 
-        return "profile";
+        return "/profile/profile";
     }
 
     @GetMapping("/profile/{id}")
@@ -49,7 +49,7 @@ public class ProfileController {
         User user = userService.findUserById(id);
         model.addAttribute("user", user);
 
-        return "profile";
+        return "/profile/profile";
     }
 
 
@@ -58,7 +58,7 @@ public class ProfileController {
         User user = userService.findUserById(id);
         model.addAttribute("userForm", user);
 
-        return "editprofile";
+        return "/profile/editprofile";
     }
 
 

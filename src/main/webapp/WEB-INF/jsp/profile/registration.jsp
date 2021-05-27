@@ -10,7 +10,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.82.0">
-    <title>Редактирование профиля</title>
+    <title>Регистрация</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
 
@@ -21,7 +21,7 @@
     <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <style>
-        <%@include file='css/form-validation.css' %>
+        <%@include file='../css/form-validation.css' %>
 
         @media (min-width: 768px) {
         }
@@ -34,7 +34,7 @@
             margin: 5px 5px 5px 5px;
         }
 
-        memo {
+        memo{
             height: auto;
         }
     </style>
@@ -45,13 +45,13 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
         crossorigin="anonymous"></script>
-
-<%@ include file="header.jsp" %>
+<%@ include file = "../header.jsp" %>
 
 <div class="container">
     <main>
+
         <div class="py-5 ">
-            <h2>Редактирование профиля</h2>
+            <h2>Регистрация</h2>
         </div>
 
         <div class="row g-5">
@@ -76,21 +76,12 @@
                                         class="form-control"
                                         id="lastName"/>
                         </div>
-
-                        <div class="col-12">
-                            <label for="shortMemo" class="form-label memo">Статус</label>
-                            <form:textarea type="text"
-                                           path="shortMemo"
-                                           class="form-control"
-                                           id="shortMemo"/>
-                        </div>
-
                         <div class="col-12">
                             <label for="memo" class="form-label memo">О себе</label>
                             <form:textarea type="text"
-                                           path="memo"
-                                           class="form-control"
-                                           id="memo"/>
+                                        path="memo"
+                                        class="form-control"
+                                        id="memo"/>
                         </div>
 
                         <div class="col-12">
@@ -133,7 +124,6 @@
                             <label for="passwordConfirm" class="form-label">Подтвердите пароль</label>
                             <form:input type="password"
                                         path="passwordConfirm"
-                                        value="${userForm.password}"
                                         placeholder="Введите пароль еще раз"
                                         id="passwordConfirm"
                                         class="form-control"/>
@@ -142,12 +132,12 @@
                                 ${passwordError}
                         </div>
                         <button class="w-100 btn btn-success"
-                                type="submit">Изменить профиль
+                                type="submit">Зарегистрироваться
                         </button>
 
                         <button class="w-100 btn btn-warning border-black"
                                 type="button"
-                                onclick="document.location='/profile'">Назад
+                                onclick="document.location='/'">Назад
                         </button>
                     </div>
                 </form:form>
