@@ -42,24 +42,31 @@ public class LanguageAndBuilderService {
         builderRepository.save(builder);
     }
 
-    public boolean deleteLanguage(Language language) {
-        boolean ifExist = languageRepository.existsById(language.getId());
+    public boolean deleteLanguage(long languageId) {
+        boolean ifExist = languageRepository.existsById(languageId);
 
-        if (ifExist) {
+        if (!ifExist) {
             return false;
         }
-        languageRepository.delete(language);
+
+        List<Builder> builderList = builderRepository.findAllByLanguage_Id(languageId);
+
+        for (Builder builder : builderList) {
+            builderRepository.delete(builder);
+        }
+
+        languageRepository.deleteById(languageId);
 
         return true;
     }
 
-    public boolean deleteBuilder(Builder builder){
-        boolean ifExist = builderRepository.existsById(builder.getId());
+    public boolean deleteBuilder(Long builderId){
+        boolean ifExist = builderRepository.existsById(builderId);
 
-        if (ifExist) {
+        if (!ifExist) {
             return false;
         }
-        builderRepository.delete(builder);
+        builderRepository.deleteById(builderId);
 
         return true;
     }

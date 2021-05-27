@@ -69,7 +69,8 @@
                     <li><a href="/admin/users" class="nav-link px-2 text">Пользователи</a></li>
                     <li><a href="/admin/projects" class="nav-link px-2 text">Проекты</a></li>
                     <li><a href="/admin/configs" class="nav-link px-2 text">Конфигурации</a></li>
-
+                    <li><a href="/admin/languages" class="nav-link px-2 text">Языки</a></li>
+                    <li><a href="/admin/builders" class="nav-link px-2 text">Сборщики</a></li>
                 </sec:authorize>
             </ul>
 
@@ -88,12 +89,16 @@
                     </button>
                 </sec:authorize>
 
-                <sec:authorize access="isAuthenticated()">
-                    <button onclick="document.location='/project/create'" type="button" class="btn btn-success me-2">
-                        Создать проект
-                    </button>
-                    <button onclick="document.location='/profile/current'" type="button"
-                            class="btn btn-outline-light me-2">${pageContext.request.userPrincipal.name}</button>
+                <sec:authorize access="isAuthenticated() ">
+                    <sec:authorize access="hasRole('ROLE_USER')">
+
+                        <button onclick="document.location='/project/create'" type="button"
+                                class="btn btn-success me-2">
+                            Создать проект
+                        </button>
+                        <button onclick="document.location='/profile/current'" type="button"
+                                class="btn btn-outline-light me-2">${pageContext.request.userPrincipal.name}</button>
+                    </sec:authorize>
                     <button onclick="document.location='/logout'" type="button" class="btn btn-warning">Выйти</button>
                 </sec:authorize>
 

@@ -56,14 +56,14 @@ public class ProjectConfigService {
         return true;
     }
 
-    public boolean deleteConfig(ProjectConfig projectConfig) {
-        boolean isExist = projectConfigRepository.existsById(projectConfig.getId());
+    public boolean deleteConfig(Long id) {
+        boolean isExist = projectConfigRepository.existsById(id);
 
         if (!isExist) {
             return false;
         }
 
-        projectConfigRepository.delete(projectConfig);
+        projectConfigRepository.deleteById(id);
         return true;
     }
 }
