@@ -6,10 +6,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import ru.runner.entity.Project;
 import ru.runner.entity.ProjectConfig;
 import ru.runner.entity.User;
@@ -35,38 +32,32 @@ public class ProjectController {
         List<Project> projectList = projectService.getAllProjects();
         model.addAttribute("projectList", projectList);
 
-        return "/project/all_projects";
+        return "project/all_projects";
     }
 
     @GetMapping("/project/{id}")
     public String showProject(Model model, @PathVariable("id") long id) {
         Project project = projectService.getProjectById(id);
         model.addAttribute("project", project);
-        return "/project/project";
+        return "project/project";
     }
 
 
     @GetMapping("/project/create")
     public String createProject(Model model) {
+        List<ProjectConfig> configList = configService.getAllConfigs();
+
+        model.addAttribute("configList", configList);
         model.addAttribute("projectForm", new Project());
+        model.addAttribute("isEdit", false);
 
-        List<ProjectConfig> configsList = configService.getAllConfigs();
-
-        for (ProjectConfig projectConfig : configsList) {
-            projectConfig.generateName();
-            configService.updateConfig(projectConfig);
-        }
-
-        model.addAttribute("configsList", configsList);
-
-
-        return "/project/create_project";
+        return "project/edit_project";
     }
 
     @PostMapping("/project/create")
     public String createProject(@ModelAttribute("projectForm") @Valid Project project,
-                          BindingResult bindingResult,
-                          Model model) throws Exception {
+                                BindingResult bindingResult,
+                                Model model) throws Exception {
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = (User) auth.getPrincipal();
@@ -75,33 +66,36 @@ public class ProjectController {
         project.setCreatingDate(new Date());
         project.setLogo("");
 
-        if (bindingResult.hasErrors()){
+        if (bindingResult.hasErrors()) {
             throw new Exception("Не удалось создать проект, обратитесь к администратору. " + bindingResult.toString());
         }
 
         projectService.addNewProject(project);
 
-        return "redirect:/";
+        return "redirect:/allProjects";
     }
 
     @GetMapping("/project/edit/{id}")
     public String showEditProjectForm(Model model, @PathVariable("id") long id) {
-        Project project = projectService.getProjectById(id);
-        model.addAttribute("isNewProject", false);
-        model.addAttribute("project", project);
 
-        return "/project/edit_project";
+        Project project = projectService.getProjectById(id);
+        model.addAttribute("projectForm", project);
+        model.addAttribute("configList", configService.getAllConfigs());
+        model.addAttribute("isEdit", true);
+        return "project/edit_project";
     }
 
     @PostMapping("/project/edit/{id}")
-    public String editProject(@ModelAttribute("projectForm") @Valid Project projectForm,
-                              @PathVariable("id") long id) {
+    public String updateProject(@ModelAttribute("projectForm") @Valid Project projectForm,
+                                @PathVariable("id") long id,
+                                BindingResult bindingResult) throws Exception {
 
-//        Project project = projectService.getProjectById(id);
-//        model.addAttribute("project", project);
+        if (bindingResult.hasErrors()) {
+            throw new Exception("Не удалось обновить проект, обратитесь к администратору. " + bindingResult.toString());
+        }
 
-        return "/project/project";
+        projectService.updateProject(projectForm);
+
+        return "redirect:project/project/{" + id + "}";
     }
-
-
 }

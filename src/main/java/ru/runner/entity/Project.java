@@ -41,6 +41,11 @@ public class Project {
     @Getter
     @Setter
     @Type(type = "text")
+    private String status;
+
+    @Getter
+    @Setter
+    @Type(type = "text")
     private String description;
 
     @Getter

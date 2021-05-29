@@ -11,8 +11,14 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.82.0">
-    <title>Создание проекта</title>
 
+    <c:if test="${isEdit}">
+        <title>Редактирование проекта</title>
+    </c:if>
+
+    <c:if test="${!isEdit}">
+        <title>Создание проекта</title>
+    </c:if>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
 
@@ -43,7 +49,6 @@
 
 
     </style>
-
 </head>
 
 
@@ -52,20 +57,34 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
         crossorigin="anonymous"></script>
-<script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
 <%@ include file="../header.jsp" %>
 
 <div class="container">
     <main>
+
         <div class="py-5 ">
-            <h2>Создание проекта</h2>
+            <c:if test="${!isEdit}">
+                <h2>Создание проекта</h2>
+            </c:if>
+
+            <c:if test="${isEdit}">
+                <h2>Редактирование проекта</h2>
+            </c:if>
         </div>
 
         <div class="row g-5">
             <div class="col-md-7 col-lg-8">
                 <h4 class="mb-3">Введите данные проекта</h4>
-                <%--@elvariable id="userForm" type=""--%>
-                <form:form method="POST" modelAttribute="projectForm" class="needs-validation">
+
+                <c:if test="${!isEdit}">
+                    <c:set var="action" value="/project/create"/>
+                </c:if>
+
+                <c:if test="${isEdit}">
+                    <c:set var="action" value="/project/edit/${projectForm.id}"/>
+                </c:if>
+
+                <form:form method="POST" action="${action}" modelAttribute="projectForm" class="needs-validation">
                 <div class="row g-3">
 
                     <div class="col-12">
@@ -75,6 +94,7 @@
                                     class="form-control"
                                     id="name"/>
                     </div>
+
 
                     <div class="col-12">
                         <label for="sourceUrl" class="form-label memo">Ссылка на исходные данные</label>
@@ -87,14 +107,28 @@
                     <div class="col-12">
 
                         <label for="projectConfig" class="form-label memo">Конфигурация запуска</label>
+
                         <form:select type="text"
                                      path="projectConfig"
                                      class="form-control"
                                      id="projectConfig">
-                            <c:forEach items="${configsList}" var="config">
+                            <c:forEach items="${configList}" var="config">
                                 <option value="${config.id}">${config.name}</option>
                             </c:forEach>
                         </form:select>
+
+                        <c:if test="${isEdit}">
+                            <form:hidden
+                                    path="user"
+                                    value="${projectForm.user.id}"
+                            />
+
+                            <form:hidden
+                                    path="creatingDate"
+                                    value="${projectForm.creatingDate}"
+                            />
+                        </c:if>
+
                     </div>
 
                     <div class="col-12">
@@ -108,10 +142,17 @@
                         </div>
                     </div>
 
+                    <c:if test="${!isEdit}">
+                        <button class="w-100 btn btn-success "
+                                type="submit">Создать проект
+                        </button>
+                    </c:if>
 
-                    <button class="w-100 btn btn-success "
-                            type="submit">Создать проект
-                    </button>
+                    <c:if test="${isEdit}">
+                        <button class="w-100 btn btn-success "
+                                type="submit">Сохранить
+                        </button>
+                    </c:if>
 
                     <button class="w-100 btn btn-warning border-black "
                             type="button"
@@ -119,7 +160,6 @@
                     </button>
 
                     </form:form>
-
 
                 </div>
             </div>

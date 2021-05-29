@@ -6,10 +6,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import ru.runner.entity.Project;
 import ru.runner.entity.User;
@@ -45,9 +42,13 @@ public class ProfileController {
 
     @GetMapping("/profile/{id}")
     public String showProfile(Model model, @PathVariable("id") long id) {
-        model.addAttribute("isCurrentUser", false);
+
+        List<Project> projectList = projectService.getAllProjects();
         User user = userService.findUserById(id);
+
         model.addAttribute("user", user);
+        model.addAttribute("isCurrentUser", false);
+        model.addAttribute("projectList", projectList);
 
         return "/profile/profile";
     }
@@ -125,6 +126,15 @@ public class ProfileController {
         }
 
         return userForm;
+    }
+
+    @PostMapping("/profile/project/delete")
+    public String deleteProject(@RequestParam(required = true, defaultValue = "") Long projectId) {
+
+        if (projectId != null) {
+            projectService.deleteProject(projectId);
+        }
+        return "redirect:/profile/current";
     }
 
 }
