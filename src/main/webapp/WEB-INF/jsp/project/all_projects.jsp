@@ -18,7 +18,6 @@
 
 
     <!-- Bootstrap core CSS -->
-    <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         <%@ include file = "../css/allProjects.css" %>
         .row {
@@ -34,7 +33,6 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
         crossorigin="anonymous"></script>
-<script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
 <script src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js'></script>
 <div class="container mt-5 mb-5">
     <div class="d-flex justify-content-center row">
@@ -43,11 +41,11 @@
             <c:forEach var="project" items="${projectList}">
 
                 <div class="row p-2 bg-white border rounded mt-2">
-                    <div class="col-md-3 mt-1">
+                    <div class="col-md-2 mt-1">
                         <img class="img-fluid img-responsive rounded product-image"
-                             src="https://static.thenounproject.com/png/203873-200.png"
-                            sizes="50%">
+                             src="https://static.thenounproject.com/png/203873-200.png">
                     </div>
+
                     <div class="col-md-6 mt-1">
                         <h5>${project.name}</h5>
 
@@ -58,15 +56,28 @@
                         </div>
 
 
-                        <div class="mt-1 mb-1 spec-1"><span>Описание:<br></span>
+                        <div class="mt-1 mb-1 spec-1">
+                            <span>Описание:<br></span>
                         </div>
                         <p class="text-justify text-truncate para mb-0">${project.description}<br><br></p>
                     </div>
                     <div class="align-items-center align-content-center col-md-3 border-left mt-1">
 
-                        <div class="d-flex flex-column mt-1">
-                            <button class="btn btn-success"  type="button">Запустить</button>
-                            <button class="btn btn-outline-primary  mt-2" onclick="document.location='/project/${project.id}'" type="button">Страница проекта</button>
+                        <div class="d-flex flex-column mt-1 text-center">
+
+                            <div class="mt-1 mb-1 spec-1">
+                                <span>Статус проекта:<br></span>
+                            </div>
+
+                            <div>
+                                <span>${project.status}</span>
+                            </div>
+
+                            <br>
+                            <button class="btn btn-success" type="button">Запустить</button>
+                            <button class="btn btn-outline-primary  mt-2"
+                                    onclick="document.location='/project/${project.id}'" type="button">Страница проекта
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -74,6 +85,7 @@
         </div>
     </div>
 </div>
+
 
 </body>
 </html>

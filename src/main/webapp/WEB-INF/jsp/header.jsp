@@ -82,7 +82,7 @@
             <div class="text-end">
 
                 <sec:authorize access="!isAuthenticated()">
-                    <button onclick="document.location='login'" type="button" class="btn btn-outline-light me-2">Войти
+                    <button onclick="document.location='../login'" type="button" class="btn btn-outline-light me-2">Войти
                     </button>
                     <button onclick="document.location='registration'" type="button" class="btn btn-warning">
                         Зарегистрироваться
