@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 <!DOCTYPE HTML>
 <html>
@@ -42,8 +43,11 @@
 
                 <div class="row p-2 bg-white border rounded mt-2">
                     <div class="col-md-2 mt-1">
+
                         <img class="img-fluid img-responsive rounded product-image"
-                             src="https://static.thenounproject.com/png/203873-200.png">
+                             src="/img/${project.logo}">
+                            <%--                        <img class="img-fluid img-responsive rounded product-image"--%>
+                            <%--                             src="https://static.thenounproject.com/png/203873-200.png">--%>
                     </div>
 
                     <div class="col-md-6 mt-1">
@@ -59,7 +63,9 @@
                         <div class="mt-1 mb-1 spec-1">
                             <span>Описание:<br></span>
                         </div>
-                        <p class="text-justify text-truncate para mb-0">${project.description}<br><br></p>
+                        <c:set var="description" value="${project.description}"/>
+
+                        <p class="text-justify text-truncate para mb-0">${fn:substring(description, 0, 60)}<br><br></p>
                     </div>
                     <div class="align-items-center align-content-center col-md-3 border-left mt-1">
 

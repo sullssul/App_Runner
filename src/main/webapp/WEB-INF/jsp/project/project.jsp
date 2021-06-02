@@ -37,37 +37,52 @@
 <div class="container">
     <div class="card">
         <div class="row">
-            <aside class="col-sm-5 border-right">
-                <article class="gallery-wrap">
-                    <div class="img-big-wrap">
-                        <div><img src="https://s9.postimg.org/tupxkvfj3/image.jpg" alt=""></div>
-                    </div> <!-- slider-product.// -->
-                </article> <!-- gallery-wrap .end// -->
-            </aside>
-            <aside class="col-sm-7">
+
+            <aside class="col-md">
                 <article class="card-body p-5">
+
+                    <div class="card-img-top mb-5">
+                        <img class="img-fluid img-responsive rounded product-image"
+                             src="/img/${project.logo}">
+                    </div>
                     <h3 class="title mb-3">${project.name}</h3>
 
-                    <dl class="item-property">
-                        <dt>Описание</dt>
-                        <dd><p>${project.description} </p></dd>
-                    </dl>
                     <dl class="param param-feature">
-                        <dt>Язык</dt>
-                        <dd>12345611</dd>
+                        <dt>Статус:</dt>
+                        <dd>${project.status}</dd>
                     </dl>  <!-- item-property-hor .// -->
+
                     <dl class="param param-feature">
-                        <dt>Сборщик</dt>
-                        <dd>Black and white</dd>
-                    </dl>  <!-- item-property-hor .// -->
-                    <dl class="param param-feature">
-                        <dt>Автор</dt>
+                        <dt>Автор:</dt>
                         <dd><a href="/profile/${project.user.id}">${project.user.username}</a></dd>
                     </dl>  <!-- item-property-hor .// -->
+
+                    <dl class="param param-feature">
+                        <dt>Конфигурация запуска:</dt>
+                        <dd>${project.projectConfig.name}</dd>
+                    </dl>  <!-- item-property-hor .// -->
+
+                    <aside class="col-sm-1 border-left">
+
+                    </aside>
+                    <dl class="item-property">
+                        <dt>Описание:</dt>
+                        <dd>
+
+                            <p>${project.description} </p>
+                        </dd>
+                    </dl>
+
                     <hr>
                     <a href="#" class="btn btn-lg btn-success "> Запустить проект</a>
+
+                    <button class="btn btn-lg btn-warning border-black ml-2"
+                            type="button"
+                            onclick="history.back();">Назад
+                    </button>
                 </article> <!-- card-body.// -->
             </aside> <!-- col.// -->
+
         </div> <!-- row.// -->
     </div> <!-- card.// -->
 

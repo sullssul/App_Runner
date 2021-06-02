@@ -137,7 +137,7 @@
 
                         <button class="w-100 btn btn-warning border-black"
                                 type="button"
-                                onclick="document.location='/'">Назад
+                                onclick="history.back();">Назад
                         </button>
                     </div>
                 </form:form>

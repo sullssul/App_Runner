@@ -31,7 +31,7 @@ public class ProfileController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = (User) auth.getPrincipal();
 
-        List<Project> projectList = projectService.getAllProjects();
+        List<Project> projectList = projectService.getAllUserProjects(user.getId());
 
         model.addAttribute("isCurrentUser", true);
         model.addAttribute("user", user);
@@ -43,7 +43,7 @@ public class ProfileController {
     @GetMapping("/profile/{id}")
     public String showProfile(Model model, @PathVariable("id") long id) {
 
-        List<Project> projectList = projectService.getAllProjects();
+        List<Project> projectList = projectService.getAllUserProjects(id);
         User user = userService.findUserById(id);
 
         model.addAttribute("user", user);

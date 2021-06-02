@@ -81,35 +81,43 @@
                 </c:if>
 
                 <c:if test="${isEdit}">
-                    <c:set var="action" value="/project/edit/${projectForm.id}"/>
+                    <c:set var="action" value="/project/edit/${projectForm.project.id}"/>
                 </c:if>
 
-                <form:form method="POST" action="${action}" modelAttribute="projectForm" class="needs-validation">
+                <form:form method="POST" action="${action}" enctype="multipart/form-data" modelAttribute="projectForm"  class="needs-validation">
                 <div class="row g-3">
 
                     <div class="col-12">
                         <label for="name" class="form-label">Название проекта</label>
                         <form:input type="text"
-                                    path="name"
+                                    path="project.name"
                                     class="form-control"
                                     id="name"/>
                     </div>
 
+                    <div class="col-12">
+                        <label for="file"  class="form-label">Файл с данными</label>
+                        <form:input type="file"
+                                    path="sourceFile"
+                                    class="form-control"
+                                    id="file"/>
+                    </div>
 
                     <div class="col-12">
-                        <label for="sourceUrl" class="form-label memo">Ссылка на исходные данные</label>
-                        <form:input type="text"
-                                    path="sourceUrl"
+                        <label for="logo"  class="form-label">Лого проекта</label>
+                        <form:input type="file"
+                                    path="logo"
                                     class="form-control"
-                                    id="sourceUrl"/>
+                                    id="logo"/>
                     </div>
+
 
                     <div class="col-12">
 
                         <label for="projectConfig" class="form-label memo">Конфигурация запуска</label>
 
                         <form:select type="text"
-                                     path="projectConfig"
+                                     path="project.projectConfig"
                                      class="form-control"
                                      id="projectConfig">
                             <c:forEach items="${configList}" var="config">
@@ -119,13 +127,13 @@
 
                         <c:if test="${isEdit}">
                             <form:hidden
-                                    path="user"
-                                    value="${projectForm.user.id}"
+                                    path="project.user"
+                                    value="${projectForm.project.user.id}"
                             />
 
                             <form:hidden
-                                    path="creatingDate"
-                                    value="${projectForm.creatingDate}"
+                                    path="project.creatingDate"
+                                    value="${projectForm.project.creatingDate}"
                             />
                         </c:if>
 
@@ -136,7 +144,7 @@
                         <div class="col-12">
                             <label for="description" class="form-label memo">Описание проекта</label>
                             <form:textarea type="text"
-                                           path="description"
+                                           path="project.description"
                                            class="form-control"
                                            id="description"/>
                         </div>
@@ -154,9 +162,9 @@
                         </button>
                     </c:if>
 
-                    <button class="w-100 btn btn-warning border-black "
+                    <button class="w-100 btn btn-warning border-black"
                             type="button"
-                            onclick="document.location='/'">Назад
+                            onclick="history.back();">Назад
                     </button>
 
                     </form:form>
