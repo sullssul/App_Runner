@@ -19,6 +19,8 @@ public class RegistrationController {
     @Autowired
     private UserService userService;
 
+    private final String defaultPhoto = "74969ad1-72b2-452c-a905-378992f6f19e. avatar.png";
+
     @GetMapping("/registration")
     public String registration(Model model) {
         model.addAttribute("userForm", new User());
@@ -33,7 +35,7 @@ public class RegistrationController {
 
         userForm.setRegisteringDate(new Date());
         userForm.setShortMemo("");
-        userForm.setPhoto("/images/empty.png");
+        userForm.setPhoto(defaultPhoto);
 
         if (bindingResult.hasErrors()) {
             return "/profile/registration";

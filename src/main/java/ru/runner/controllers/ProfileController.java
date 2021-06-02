@@ -1,12 +1,14 @@
 package ru.runner.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import ru.runner.entity.Project;
 import ru.runner.entity.User;
@@ -14,7 +16,10 @@ import ru.runner.service.ProjectService;
 import ru.runner.service.UserService;
 
 import javax.validation.Valid;
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
+import java.util.UUID;
 
 
 @Controller
@@ -25,6 +30,12 @@ public class ProfileController {
 
     @Autowired
     private ProjectService projectService;
+
+    @Value("${upload.path.img}")
+    private String uploadPath;
+
+    private final String defaultPhoto = "74969ad1-72b2-452c-a905-378992f6f19e. avatar.png";
+
 
     @GetMapping("/profile/current")
     public String showProfile(Model model) {
@@ -38,6 +49,35 @@ public class ProfileController {
         model.addAttribute("projectList", projectList);
 
         return "/profile/profile";
+    }
+
+    @GetMapping("/profile/edit/photo")
+    public String editProfilePhoto(Model model) {
+        return "/profile/edit_photo";
+    }
+
+    @PostMapping("/profile/edit/photo")
+    public String editProfilePhoto(@RequestParam("file") MultipartFile file) throws IOException {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = (User) auth.getPrincipal();
+
+        String fileName = saveFile(file);
+        user.setPhoto(fileName);
+
+        userService.updateUser(user);
+        return "redirect:/profile/current";
+    }
+
+    private String saveFile(MultipartFile file) throws IOException {
+
+        if (!file.getOriginalFilename().isEmpty()) {
+            String uuidFile = UUID.randomUUID().toString();
+            String resultFileName = uuidFile + ". " + file.getOriginalFilename();
+
+            file.transferTo(new File(uploadPath + "/" + resultFileName));
+            return resultFileName;
+        }
+        return defaultPhoto;
     }
 
     @GetMapping("/profile/{id}")
@@ -98,7 +138,7 @@ public class ProfileController {
         copyEmptyParams(user, userForm);
         userService.updateUser(userForm);
 
-        modelAndView.setViewName("redirect:/profile");
+        modelAndView.setViewName("redirect:/profile/current");
 
         return modelAndView;
     }
@@ -123,6 +163,10 @@ public class ProfileController {
 
         if (userForm.getRoles() == null) {
             userForm.setRoles(user.getRoles());
+        }
+
+        if(userForm.getPhoto() == null){
+            userForm.setPhoto(defaultPhoto);
         }
 
         return userForm;

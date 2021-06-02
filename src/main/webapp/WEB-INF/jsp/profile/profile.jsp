@@ -33,7 +33,7 @@
     <div class="row">
         <div class="col-lg-4 col-xl-4">
             <div class="card-box text-center">
-                <img src="https://bootdey.com/img/Content/avatar/avatar7.png"
+                <img  src="/img/${user.photo}"
                      class="rounded-circle avatar-xl img-thumbnail" alt="profile-image">
 
                 <h4 class="mb-0">${user.firstName}</h4>
@@ -48,12 +48,11 @@
                 </c:if>
 
                 <c:if test="${isCurrentUser}">
-                    <button type="button"
-                            onclick="document.location='/profile/editprofile/<sec:authentication
-                                    property="principal.id"/>'"
-                            class="btn btn-success btn-xs waves-effect mb-2 waves-light">
-                        Изменить фото
-                    </button>
+                        <button type="button"
+                                onclick="document.location='/profile/edit/photo'"
+                                class="btn btn-success btn-xs waves-effect mb-2 waves-light">
+                            Изменить фото
+                        </button>
                 </c:if>
                 <div class="text-left mt-3">
                     <h4 class="font-13 text-uppercase">Обо мне :</h4>

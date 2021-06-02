@@ -31,6 +31,11 @@ public class AdminController {
     @Autowired
     private LanguageAndBuilderService languageAndBuilderService;
 
+    @GetMapping("/about")
+    public String aboutUsPage(Model model) {
+        return "/about_us";
+    }
+
     @GetMapping("/admin/users")
     public String userList(Model model) {
         model.addAttribute("userList", userService.allUsers());
