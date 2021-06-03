@@ -51,6 +51,7 @@ public class RegistrationController {
             return "/profile/registration";
         }
 
+
         return "redirect:/";
     }
 }
