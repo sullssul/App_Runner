@@ -7,7 +7,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.82.0">
     <title>О нас</title>
 
@@ -44,10 +43,10 @@
 <!-- Begin page content -->
 <main class="flex-shrink-0">
     <div class="container">
-        <h1 class="mt-5">О проекте </h1>
-        <p class="lead">Данный проект создан с целью запуска алгоритмов решения задач дискретной оптимизации в рамках
-            дипломной работы</p>
-        <hr>
+        <%--        <h1 class="mt-5">О проекте </h1>--%>
+        <%--        <p class="lead">Данный проект создан с целью запуска алгоритмов решения задач дискретной оптимизации в рамках--%>
+        <%--            дипломной работы</p>--%>
+        <%--        <hr>--%>
         <h2 class="mt-5">Разработчики</h2>
         <p class="lead">Сулейманов Сулейман, студент УГАТУ группы ПРО-416 </p>
         <p class="lead">Раиль Шамсемухаметов, студент УГАТУ группы ПРО-417</p>
@@ -57,6 +56,16 @@
     </div>
 </main>
 
+<br>
+<br>
+<br>
+<br>
+<br>
+
 
 </body>
+<footer class="fixed-bottom mt-5 ">
+    <%@ include file="footer.html" %>
+</footer>
+
 </html>

@@ -88,7 +88,10 @@
 
 
 </div>
-
+<footer class="bottom">
+    <%@ include file="../footer.html" %>
+</footer>
 
 </body>
+
 </html>

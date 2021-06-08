@@ -9,7 +9,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.82.0">
 
     <c:if test="${isEdit}">
@@ -135,6 +134,16 @@
                                     path="project.creatingDate"
                                     value="${projectForm.project.creatingDate}"
                             />
+
+                            <form:hidden
+                                    path="project.id"
+                                    value="${projectForm.project.id}"
+                            />
+
+                            <form:hidden
+                                    path="project.status"
+                                    value="${projectForm.project.status}"
+                            />
                         </c:if>
 
                     </div>
@@ -185,6 +194,15 @@
         tinycomments_author: 'Author name',
     });
 </script>
+<br>
+<br>
+<br>
+<br>
+<br>
 
 </body>
+
+<footer class="fixed-bottom mt-5 ">
+    <%@ include file="../footer.html" %>
+</footer>
 </html>

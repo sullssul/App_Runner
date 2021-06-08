@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import ru.runner.entity.Project;
 import ru.runner.repository.ProjectRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -45,6 +46,12 @@ public class ProjectService {
 
     public List<Project> getAllProjects() {
         return projectRepository.findAll();
+    }
+
+    public List<Project> searchProjectsByName(String name) {
+        List<Project> projectList = new ArrayList<>();
+        projectList = projectRepository.findProjectsByNameContains(name);
+        return projectList;
     }
 
     public boolean deleteProject(Long projectId) {

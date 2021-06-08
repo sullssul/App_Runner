@@ -9,7 +9,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.82.0">
     <title>Личный профиль</title>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -151,5 +150,9 @@
     </div> <!-- end col -->
 </div>
 </div>
+<footer class="fixed-bottom">
+    <%@ include file="../footer.html" %>
+</footer>
 </body>
+
 </html>

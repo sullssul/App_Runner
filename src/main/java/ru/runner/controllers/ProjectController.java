@@ -7,10 +7,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import ru.runner.entity.Project;
 import ru.runner.entity.ProjectConfig;
@@ -46,9 +43,7 @@ public class ProjectController {
     @GetMapping("/allProjects")
     public String showAllProjects(Model model) {
         List<Project> projectList = projectService.getAllProjects();
-        System.out.println(projectList.get(0).getLogo());
-        System.out.println(projectList.get(1).getLogo());
-        System.out.println(projectList.get(2).getLogo());
+
         model.addAttribute("projectList", projectList);
 
         return "project/all_projects";
@@ -142,8 +137,22 @@ public class ProjectController {
             throw new Exception("Не удалось обновить проект, обратитесь к администратору. " + bindingResult.toString());
         }
 
+        Project updateProject = projectCreate.getProject();
+        String logo = saveFile(projectCreate.getLogo(), true, DEFAULT_PROJECT_LOGO);
+        String file = saveFile(projectCreate.getLogo(), false, "");
+
+        updateProject.setLogo(logo);
+        updateProject.setSourceUrl(file);
         projectService.updateProject(projectCreate.getProject());
 
-        return "redirect:project/project/{" + id + "}";
+        return "redirect:/project/" + id;
+    }
+
+
+    @PostMapping("/search")
+    public String searchProject(@RequestParam(required = true, defaultValue = "") String searchText, Model model) {
+        List<Project> projectList = projectService.searchProjectsByName(searchText);
+        model.addAttribute("projectList", projectList);
+        return "project/all_projects";
     }
 }

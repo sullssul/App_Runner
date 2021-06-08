@@ -3,6 +3,7 @@ package ru.runner.entity;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.Type;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -55,5 +56,6 @@ public class Project {
 
     @Getter
     @Setter
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date creatingDate;
 }
