@@ -23,6 +23,11 @@
     <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         <%@ include file='../css/project.css' %>
+
+        body {
+            padding-bottom: 120px;
+        }
+
     </style>
 
 </head>

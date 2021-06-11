@@ -37,6 +37,10 @@
 
         @media (min-width: 768px) {
         }
+        body {
+            padding-bottom: 120px;
+        }
+
 
         .border-black {
             border-color: #212529;

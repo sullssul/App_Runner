@@ -32,6 +32,10 @@
         button {
             margin: 5px 5px 5px 5px;
         }
+        body {
+            padding-bottom: 120px;
+        }
+
 
         memo {
             height: auto;
@@ -55,7 +59,6 @@
 
         <div class="row g-5">
             <div class="col-md-7 col-lg-8">
-                <h4 class="mb-3">Введите свои данные</h4>
                 <%--@elvariable id="userForm" type=""--%>
                 <form action="/profile/edit/photo" enctype="multipart/form-data" method="post">
 

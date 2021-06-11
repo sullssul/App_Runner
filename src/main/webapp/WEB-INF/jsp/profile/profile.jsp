@@ -117,7 +117,7 @@
                                                     Редактировать
                                                 </button>
 
-                                                <button type="submit" onclick="return confirm('Вы уверены?')"
+                                                <button type="submit" onclick="return confirm('Вы уверены? Проект невозможно будет восстановить!')"
                                                         class="btn-sm btn-danger">
                                                     Удалить
                                                 </button>

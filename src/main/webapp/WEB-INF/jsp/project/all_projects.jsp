@@ -24,6 +24,9 @@
             width: 100%;
             min-width: 1000px;
         }
+        body {
+            padding-bottom: 120px;
+        }
 
     </style>
 
