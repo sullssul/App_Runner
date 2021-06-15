@@ -37,7 +37,7 @@
             margin: 5px 5px 5px 5px;
         }
 
-        memo{
+        memo {
             height: auto;
         }
     </style>
@@ -48,7 +48,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
         crossorigin="anonymous"></script>
-<%@ include file = "../header.jsp" %>
+<%@ include file="../header.jsp" %>
 
 <div class="container">
     <main>
@@ -70,6 +70,7 @@
                                         path="firstName"
                                         class="form-control"
                                         id="firstName"/>
+                            <form:errors path="firstName"/>
                         </div>
 
                         <div class="col-sm-6">
@@ -78,13 +79,15 @@
                                         path="lastName"
                                         class="form-control"
                                         id="lastName"/>
+                            <form:errors path="lastName"/>
+
                         </div>
                         <div class="col-12">
                             <label for="memo" class="form-label memo">О себе</label>
                             <form:textarea type="text"
-                                        path="memo"
-                                        class="form-control"
-                                        id="memo"/>
+                                           path="memo"
+                                           class="form-control"
+                                           id="memo"/>
                         </div>
 
                         <div class="col-12">
@@ -102,7 +105,7 @@
                                         Логин занят
                                     </div>
                                 </form:errors>
-                                    ${usernameError}
+                                        ${usernameError}
                             </div>
                         </div>
 

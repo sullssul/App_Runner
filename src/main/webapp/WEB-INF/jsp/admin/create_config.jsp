@@ -72,7 +72,7 @@
                                      path="language"
                                      class="form-control"
                                      id="language">
-                            <c:forEach items="${langList}" var="lang">
+                            <c:forEach items="${languageList}" var="lang">
                                 <option value="${lang.id}"> ${lang.name} version ${lang.version}</option>
                             </c:forEach>
                         </form:select>

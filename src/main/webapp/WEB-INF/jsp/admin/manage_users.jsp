@@ -16,9 +16,7 @@
     <style>
         <%@ include file = "../css/users.css" %>
 
-        .container {
-            margin-top: 30px;
-        }
+
 
         .btn-danger{
             margin-left: 10px;
@@ -111,4 +109,7 @@
 </div>
 
 </body>
+<footer class="fixed-bottom">
+    <%@ include file="../footer.html" %>
+</footer>
 </html>

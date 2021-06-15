@@ -6,6 +6,7 @@ import org.hibernate.annotations.Type;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Entity
@@ -32,6 +33,7 @@ public class Project {
 
     @Getter
     @Setter
+    @Size(min = 3, message = "Минимум 3 символа")
     private String name;
 
     @Getter

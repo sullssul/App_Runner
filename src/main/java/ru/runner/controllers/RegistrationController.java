@@ -37,6 +37,11 @@ public class RegistrationController {
         userForm.setShortMemo("");
         userForm.setPhoto(defaultPhoto);
 
+        if (userForm.getUsername().isEmpty()){
+            model.addAttribute("usernameError", "Логин не может быть пустым!");
+            return "/profile/registration";
+        }
+
         if (bindingResult.hasErrors()) {
             return "/profile/registration";
         }

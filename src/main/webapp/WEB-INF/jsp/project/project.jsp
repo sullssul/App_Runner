@@ -79,7 +79,7 @@
                     </dl>
 
                     <hr>
-                    <a href="#" class="btn btn-lg btn-success "> Запустить проект</a>
+                    <a onclick="document.location='http://localhost:4201/app/1'"  class="btn btn-lg btn-success "> Запустить проект</a>
 
                     <button class="btn btn-lg btn-warning border-black ml-2"
                             type="button"
@@ -90,10 +90,8 @@
 
         </div> <!-- row.// -->
     </div> <!-- card.// -->
-
-
 </div>
-<footer class="bottom">
+<footer class="fixed-bottom">
     <%@ include file="../footer.html" %>
 </footer>
 

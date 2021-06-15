@@ -96,6 +96,8 @@
                                     path="project.name"
                                     class="form-control"
                                     id="name"/>
+                        <form:errors path="project.name"/>
+                        ${nameError}
                     </div>
 
                     <div class="col-12">
@@ -105,6 +107,7 @@
                                     class="form-control"
                                     id="file"/>
                     </div>
+                    Файл слишком большой!
 
                     <div class="col-12">
                         <label for="logo"  class="form-label">Лого проекта</label>
@@ -160,6 +163,7 @@
                                            path="project.description"
                                            class="form-control"
                                            id="description"/>
+
                         </div>
                     </div>
 
@@ -206,7 +210,7 @@
 
 </body>
 
-<footer class="fixed-bottom mt-5 ">
+<footer class="fixed-bottom">
     <%@ include file="../footer.html" %>
 </footer>
 </html>

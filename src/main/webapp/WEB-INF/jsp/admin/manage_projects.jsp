@@ -9,16 +9,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="generator" content="Hugo 0.82.0">
-    <title>Все пользователи</title>
+    <title>Все проекты</title>
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
 
 
     <style>
         <%@ include file = "../css/users.css" %>
 
-        .container {
-            margin-top: 30px;
-        }
 
         .btn-danger{
             margin-left: 10px;
@@ -119,4 +116,7 @@
 </div>
 
 </body>
+<footer class="fixed-bottom">
+    <%@ include file="../footer.html" %>
+</footer>
 </html>

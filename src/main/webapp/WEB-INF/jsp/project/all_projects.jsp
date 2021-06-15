@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="generator" content="Hugo 0.82.0">
-    <title>Главная</title>
+    <title>Все проекты</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
     <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
@@ -82,7 +82,7 @@
                             </div>
 
                             <br>
-                            <button class="btn btn-success" type="button">Запустить</button>
+                            <button class="btn btn-success"  onclick="document.location='http://localhost:4201/app/1'"  type="button">Запустить</button>
                             <button class="btn btn-outline-primary  mt-2"
                                     onclick="document.location='/project/${project.id}'" type="button">Страница проекта
                             </button>
@@ -96,7 +96,7 @@
 
 <hr>
 </body>
-<footer class="fixed-bottom mt-5 ">
+<footer class="fixed-bottom">
     <%@ include file="../footer.html" %>
 </footer>
 </html>

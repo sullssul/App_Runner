@@ -91,7 +91,7 @@ public class AdminController {
         model.addAttribute("builderList", languageAndBuilderService.getBuildersForLanguage(langId));
         model.addAttribute("configForm", config);
 
-        return "create_config_select_builder";
+        return "/admin/create_config_select_builder";
     }
 
     @PostMapping("/admin/configs/builder")

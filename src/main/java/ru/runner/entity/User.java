@@ -11,6 +11,7 @@ import javax.validation.constraints.Size;
 import java.util.Collection;
 import java.util.Date;
 import java.util.Set;
+
 @Entity
 @Table(name = "t_user")
 public class User implements UserDetails {
@@ -20,12 +21,12 @@ public class User implements UserDetails {
     @Setter
     private Long id;
 
-    @Size(min=3, message = "Не меньше 3 знаков")
+    @Size(min = 3, max = 256, message = "Не меньше 3 знаков")
     @Getter
     @Setter
     private String username;
 
-    @Size(min=5, message = "Не меньше 5 знаков")
+    @Size(min = 5, max = 256, message = "Не меньше 5 знаков")
     @Getter
     @Setter
     private String password;
@@ -43,11 +44,13 @@ public class User implements UserDetails {
     @Getter
     @Setter
     @Column(name = "firstName")
+    @Size(max = 256, message = "Не более 255 символов")
     private String firstName;
 
     @Getter
     @Setter
     @Column(name = "lastName")
+    @Size(max = 256, message = "Не более 255 символов")
     private String lastName;
 
     @Getter

@@ -8,7 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MaxUploadSizeExceededException;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 import ru.runner.entity.Project;
 import ru.runner.entity.ProjectConfig;
 import ru.runner.entity.ProjectCreate;
@@ -16,6 +18,8 @@ import ru.runner.entity.User;
 import ru.runner.service.ProjectConfigService;
 import ru.runner.service.ProjectService;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.io.File;
 import java.io.IOException;
@@ -68,10 +72,35 @@ public class ProjectController {
         return "project/edit_project";
     }
 
+    @ExceptionHandler(MaxUploadSizeExceededException.class)
+    public ModelAndView handleMaxSizeException(
+            MaxUploadSizeExceededException exc,
+            HttpServletRequest request,
+            HttpServletResponse response) {
+
+        ModelAndView modelAndView = new ModelAndView("/project/edit_project");
+        modelAndView.getModel().put("fileError", "Файл слишком большой!");
+        return modelAndView;
+    }
+
     @PostMapping("/project/create")
-    public String createProject(@ModelAttribute("projectForm") ProjectCreate projectCreate,
+    public String createProject(@ModelAttribute("projectForm") @Valid ProjectCreate projectCreate,
                                 BindingResult bindingResult,
                                 Model model) throws Exception {
+
+        if (bindingResult.hasErrors()) {
+            return "/project/edit_project";
+        }
+
+        if (projectCreate.getProject().getName().isEmpty()) {
+            model.addAttribute("nameError", "Название не может быть пустым!");
+            return "/project/edit_project";
+        }
+
+        if (projectCreate.getSourceFile().getSize() > (30 * 1024 * 1024)) {
+            model.addAttribute("fileError", "Файл не может быть больше !");
+            return "/project/edit_project";
+        }
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = (User) auth.getPrincipal();
@@ -131,7 +160,8 @@ public class ProjectController {
     @PostMapping("/project/edit/{id}")
     public String updateProject(@ModelAttribute("projectForm") @Valid ProjectCreate projectCreate,
                                 @PathVariable("id") long id,
-                                BindingResult bindingResult) throws Exception {
+                                BindingResult bindingResult)
+            throws Exception {
 
         if (bindingResult.hasErrors()) {
             throw new Exception("Не удалось обновить проект, обратитесь к администратору. " + bindingResult.toString());
@@ -139,7 +169,7 @@ public class ProjectController {
 
         Project updateProject = projectCreate.getProject();
         String logo = saveFile(projectCreate.getLogo(), true, DEFAULT_PROJECT_LOGO);
-        String file = saveFile(projectCreate.getLogo(), false, "");
+        String file = saveFile(projectCreate.getSourceFile(), false, "");
 
         updateProject.setLogo(logo);
         updateProject.setSourceUrl(file);
